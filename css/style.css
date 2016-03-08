@@ -35,7 +35,7 @@ h2{
   height:73px;
   width:73px;
   font-size: 55px;
-  background: #2ABFD4;
+  background-color: #2ABFD4;
   color:#2ABFD4;
   border-radius: 5px;
   text-align:center;
@@ -49,7 +49,7 @@ h2{
 
 .board li:active {
   background-color: #FFFFFF;
-    color:#224687;
+  color:#224687;
 }
 
 #reset{
@@ -84,12 +84,30 @@ footer{
   color:#2ABFD4 !important;
 }
 
-/*.board li .matched:active{
-  background-color:#FFFFFF !important;
-  color:#2ABFD4 !important;
+#f-login{
+  border:0;
+  background: #2ABFD4;
+  color:#ffffff;
+  width:45%;
+  margin-top: 15px;
+  padding:15px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
-.board li .matched:hover{
-  background-color:#FFFFFF !important;
-  color:#2ABFD4 !important;
-}*/
+#g-login{
+  border:0;
+  background: #2ABFD4;
+  color:#ffffff;
+  width:45%;
+  margin-top: 15px;
+  padding:15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+
+.main-menu{
+  margin-top: 200px;
+
+}

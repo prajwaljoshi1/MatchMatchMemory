@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+  //for  page transition
+  $("body").css("display", "none");
+  $("body").fadeIn(2000);
+
+
   var elements = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
   var $spot = [];
   var tries = 0;
@@ -23,7 +29,6 @@ $(document).ready(function() {
     var elementsPair = elements.concat(elements);
     var randomEmementsPair = randomise(elementsPair);
 
-    console.log(randomEmementsPair);
     for (var i = 0; i < $spot.length; i++) {
       $spot[i].text(randomEmementsPair[i]);
     }
@@ -47,21 +52,15 @@ $(document).ready(function() {
 
 
 
-  $('.board li').on('click', function(event) {
-    console.log($(this).attr('class'));
-    console.log($(previousClick).attr('class'));
+  $('.board li').on('click', function (event) {
     if ($(this).attr('class') === $(previousClick).attr('class')) {
       alert("Already Clicked");
     } else {
       tries++;
-      //console.log($(this).text());
       if ($(previousClick).text() === $(this).text()) {
-        //console.log("MATCHED");
-        console.log($(this));
         $(this).addClass('matched');
         $(previousClick).addClass('matched');
         matches++;
-        //console.log($(this));
       }
       previousClick = this;
 
@@ -77,10 +76,10 @@ $(document).ready(function() {
   });
 
   $('#reset').on('click', function(event) {
-        reset();
+    reset();
   });
 
-  var reset = function (){
+  var reset = function() {
     tries = 0;
     matches = 0;
     previousClick = {};
@@ -89,7 +88,7 @@ $(document).ready(function() {
 
     for (var i = 0; i < $spot.length; i++) {
       $spot[i].removeClass('matched');
-     }
-
+    }
+    $('h2').html('<h2>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h2>');
   }
 });
