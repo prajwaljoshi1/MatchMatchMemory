@@ -9,6 +9,11 @@ h1{
   color:#2ABFD4;
 }
 
+h2{
+  text-align: center;
+  color:#2ABFD4;
+}
+
 .clearfix{
   clear:both;
 }
@@ -73,3 +78,18 @@ footer{
   text-align:center;
   padding-top:20px;
 }
+
+.board li.matched{
+  background-color:#FFFFFF !important;
+  color:#2ABFD4 !important;
+}
+
+/*.board li .matched:active{
+  background-color:#FFFFFF !important;
+  color:#2ABFD4 !important;
+}
+
+.board li .matched:hover{
+  background-color:#FFFFFF !important;
+  color:#2ABFD4 !important;
+}*/
