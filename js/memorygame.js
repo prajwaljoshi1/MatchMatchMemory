@@ -1,15 +1,35 @@
+var playerName = "";
+
+//for  page transition later move to css
+$("body").css("display", "none");
+$("body").fadeIn(3000);
+
 $(document).ready(function() {
 
-  //for  page transition
-  $("body").css("display", "none");
-  $("body").fadeIn(2000);
+  // for firebase
+  var myFirebaseRef = new Firebase("https://ultimatememorygame.firebaseio.com/");
 
+  var getSetTopPlayers = function() {
+    playersObjArr = [];
+    myFirebaseRef.orderByValue().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var attempt = data.val().attempts;
+        var name = data.val().name;
+        setTopPlayers(name, attempt);
+      });
+    });
+  };
+
+  var setTopPlayers = function(name, attempt) {
+    $(".sidebar ol").append("<li>" + name + ": ( " + attempt + " ) </li>");
+  };
 
   var elements = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
   var $spot = [];
   var tries = 0;
   var matches = 0;
   var previousClick = {};
+  var playerName = "";
 
 
   $('.board li').each(function(i) {
@@ -45,14 +65,46 @@ $(document).ready(function() {
   var init = function() {
     addClassToLi();
     fillAllBoxes();
+    var topPlayers = getSetTopPlayers();
+    console.log(topPlayers);
+
 
   };
 
   init();
 
+  var savePlayerToFirebase = function(playerName) {
+    myFirebaseRef.push({'name': playerName,'attempts': tries
+    });
+  };
+
+  var win = function() {
+    var winMessage = " You won in " + tries + " attempts."
+    $('h2').text(winMessage);
+    //sweet alert
+    swal({
+      title: "You Won!",
+      text: "Enter Your Name:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "your name"
+    }, function(inputValue) {
+      if (inputValue === false) return false;
+      if (inputValue === "") {
+        swal.showInputError("You need to write something!");
+        return false
+      }
+      swal("Congratulations!", "Well Played", "success");
+      savePlayerToFirebase(inputValue);
+    });
+
+  };
 
 
-  $('.board li').on('click', function (event) {
+
+  $('.board li').on('click', function(event) {
     if ($(this).attr('class') === $(previousClick).attr('class')) {
       alert("Already Clicked");
     } else {
@@ -65,14 +117,12 @@ $(document).ready(function() {
       previousClick = this;
 
       if (matches === elements.length) {
-        var winMessage = " You won in " + tries + " attempts."
-        $('h2').text(winMessage);
+        win();
       }
 
       $("span.attempts").text(tries);
       $("span.matches").text(matches);
     }
-
   });
 
   $('#reset').on('click', function(event) {
@@ -89,6 +139,6 @@ $(document).ready(function() {
     for (var i = 0; i < $spot.length; i++) {
       $spot[i].removeClass('matched');
     }
-    $('h2').html('<h2>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h2>');
+    $('h2').html('<h3>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h3>');
   }
 });
