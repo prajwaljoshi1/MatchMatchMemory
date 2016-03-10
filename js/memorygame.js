@@ -1,11 +1,8 @@
-var playerName = "";
-
 //for  page transition later move to css
 $("body").css("display", "none");
-$("body").fadeIn(3000);
+$("body").fadeIn(500);
 
 $(document).ready(function() {
-
   // for firebase
   var myFirebaseRef = new Firebase("https://ultimatememorygame.firebaseio.com/");
 
@@ -15,12 +12,23 @@ $(document).ready(function() {
       snapshot.forEach(function(data) {
         var attempt = data.val().attempts;
         var name = data.val().name;
-        setTopPlayers(name, attempt);
+        //playersObjArr.push (data.val());
+        setAllPlayers(name, attempt);
+
       });
     });
+    //setTopPlayers(playersObjArr);
   };
 
-  var setTopPlayers = function(name, attempt) {
+ var setTopPlayers = function (playersObjArr){
+   console.log(playersObjArr.length);
+    for (var i = 0; i < playersObjArr.length; i++) {
+       var attempt = playersObjArr[i].attempts;
+       var name = playersObjArr[i].name;
+         $(".sidebar ol").append("<li>" + name + ": ( " + attempt + " ) </li>");
+    }
+ }
+  var setAllPlayers = function(name, attempt) {
     $(".sidebar ol").append("<li>" + name + ": ( " + attempt + " ) </li>");
   };
 
@@ -65,8 +73,8 @@ $(document).ready(function() {
   var init = function() {
     addClassToLi();
     fillAllBoxes();
-    var topPlayers = getSetTopPlayers();
-    console.log(topPlayers);
+    getSetTopPlayers();
+
 
 
   };
@@ -74,7 +82,9 @@ $(document).ready(function() {
   init();
 
   var savePlayerToFirebase = function(playerName) {
-    myFirebaseRef.push({'name': playerName,'attempts': tries
+    myFirebaseRef.push({
+      'name': playerName,
+      'attempts': tries
     });
   };
 
@@ -106,7 +116,7 @@ $(document).ready(function() {
 
   $('.board li').on('click', function(event) {
     if ($(this).attr('class') === $(previousClick).attr('class')) {
-      alert("Already Clicked");
+    swal("Already Selected!");
     } else {
       tries++;
       if ($(previousClick).text() === $(this).text()) {
@@ -130,6 +140,7 @@ $(document).ready(function() {
   });
 
   var reset = function() {
+    fillAllBoxes();
     tries = 0;
     matches = 0;
     previousClick = {};
@@ -139,6 +150,6 @@ $(document).ready(function() {
     for (var i = 0; i < $spot.length; i++) {
       $spot[i].removeClass('matched');
     }
-    $('h2').html('<h3>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h3>');
+    $('h2').html('Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span>');
   }
 });

@@ -42,6 +42,13 @@ h2{
   float:left;
 }
 
+.sidebar ol{
+  background:#2ABFD4;
+  color: #224687;
+  margin: 30px;
+  border-radius: 5px;
+}
+
 .board li{
   list-style: none;
   float: left;
@@ -99,6 +106,8 @@ footer{
   background-color:#FFFFFF !important;
   color:#2ABFD4 !important;
 }
+
+/*main menu code ( may not be implemented in the final game)*/
 
 #f-login{
   border:0;
