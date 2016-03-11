@@ -10,17 +10,21 @@ $(document).ready(function() {
     playersObjArr = [];
     myFirebaseRef.orderByValue().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
-        var attempt = data.val().attempts;
-        var name = data.val().name;
-        //playersObjArr.push (data.val());
-        setAllPlayers(name, attempt);
+        console.log(data);
+        // var attempt = data.val().attempts;
+        // var name = data.val().name;
+        playersObjArr.push(data.val());
+
+        // setAllPlayers(name, attempt);
 
       });
+      setTopPlayers(playersObjArr);
     });
-    //setTopPlayers(playersObjArr);
+    // setTopPlayers(playersObjArr);
   };
 
  var setTopPlayers = function (playersObjArr){
+   console.log("test");
    console.log(playersObjArr.length);
     for (var i = 0; i < playersObjArr.length; i++) {
        var attempt = playersObjArr[i].attempts;

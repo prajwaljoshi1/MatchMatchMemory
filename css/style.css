@@ -1,138 +1,121 @@
-
-
-body{
+body {
   background-color: #B4E0E1;
   color: #224687;
   font-family: "Areal", sans-serif;
 }
-
-h1{
+h1 {
   text-align: center;
-  color:#2ABFD4;
+  color: #2ABFD4;
 }
-
-h2{
+h2 {
   text-align: center;
-  color:#2ABFD4;
+  color: #2ABFD4;
 }
-
-.clearfix{
-  clear:both;
+.clearfix {
+  clear: both;
 }
-
-.container{
-  width:630px;;
+.container {
+  width: 630px;
   overflow: auto;
-  margin:40px 10px 10px 200px;
+  margin: 40px 10px 10px 200px;
   background: #224687;
   padding-bottom: 40px;
   border-radius: 10px;
-  float:left;
+  float: left;
 }
-
-.sidebar{
-  width:300px;
-  height:650px;
-  overflow: scroll;
-  margin:40px 10px;
+.sidebar {
+  width: 300px;
+  height: 650px;
+  margin: 40px 10px;
   background: #224687;
   color: #2ABFD4;
   padding-bottom: 40px;
   border-radius: 10px;
-  float:left;
+  float: left;
 }
-
-.sidebar ol{
-  background:#2ABFD4;
+.sidebar ol {
+  background: #2ABFD4;
   color: #224687;
+  overflow: scroll;
+  height :560px;
   margin: 30px;
   border-radius: 5px;
 }
-
-.board li{
+.board li {
   list-style: none;
   float: left;
   /*display: inline-block;*/
-  margin:10px;
-  height:73px;
-  width:73px;
+  margin: 10px;
+  height: 73px;
+  width: 73px;
   font-size: 55px;
   background-color: #2ABFD4;
-  color:transparent;
+  color: transparent;
   border-radius: 5px;
-  text-align:center;
+  text-align: center;
 }
-
-.board li:hover, #reset:hover, #hint:hover{
+.board li:hover, #reset:hover, #hint:hover {
   cursor: pointer;
   background-color: #FFFFFF;
-  color:transparent;
-
+  color: transparent;
 }
-
 .board li:active {
   background-color: #FFFFFF;
-  color:#224687;
+  color: #224687;
 }
-
-#reset{
-  border:0;
+#reset {
+  border: 0;
   background: #2ABFD4;
-  color:#ffffff;
-  width:40%;
+  color: #ffffff;
+  width: 40%;
   margin-top: 15px;
-  padding:15px;
+  padding: 15px;
   border-radius: 5px;
-  display: inline-block;;
+  display: inline-block;
+  ;
 }
-#hint{
-  border:0;
+#hint {
+  border: 0;
   background: #2ABFD4;
-  color:#ffffff;
-  width:45%;
+  color: #ffffff;
+  width: 45%;
   margin-top: 15px;
-  padding:15px;
+  padding: 15px;
   border-radius: 5px;
   display: inline-block;
 }
-
-footer{
-  display:block;
-  text-align:center;
-  padding-top:20px;
+footer {
+  display: block;
+  text-align: center;
+  padding-top: 20px;
 }
-
-.board li.matched{
-  background-color:#FFFFFF !important;
-  color:#2ABFD4 !important;
+.board li.matched {
+  background-color: #FFFFFF !important;
+  color: #2ABFD4 !important;
 }
 
 /*main menu code ( may not be implemented in the final game)*/
 
-#f-login{
-  border:0;
+#f-login {
+  border: 0;
   background: #2ABFD4;
-  color:#ffffff;
-  width:45%;
+  color: #ffffff;
+  width: 45%;
   margin-top: 15px;
-  padding:15px;
+  padding: 15px;
   border-radius: 5px;
   display: inline-block;
 }
-
-#g-login{
-  border:0;
+#g-login {
+  border: 0;
   background: #2ABFD4;
-  color:#ffffff;
-  width:45%;
+  color: #ffffff;
+  width: 45%;
   margin-top: 15px;
-  padding:15px;
+  padding: 15px;
   border-radius: 5px;
   display: inline-block;
 }
-
-
-.main-menu{
+.main-menu {
   margin-top: 200px;
-
 }
