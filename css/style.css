@@ -102,3 +102,8 @@ footer {
 .main-menu {
   margin-top: 200px;
 }
+
+#facebook-login{
+  height: 200%;
+  width: 200%;
+}
