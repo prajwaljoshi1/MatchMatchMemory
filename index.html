@@ -92,7 +92,7 @@
         console.log('Successful login for: ' + response.name);
         document.getElementById('welcome-user').innerHTML =
           'Welcome, ' + response.name + '!';
-          document.getElementById('user').innerHTML = response.name;
+          document.getElementById('user').innerHTML ="" +response.name;
       });
     }
   </script>
@@ -100,7 +100,7 @@
 
   <div class="main-menu">
     <h1 class="logo"><img src="img/logo.png"></h1>
-    <h1><fb:login-buttons scope="public_profile,email" onlogin="checkLoginState();">
+    <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
       </fb:login-button></h1>
     <h1> Welcome, <span id="user">Guest</span><h1/>
 
