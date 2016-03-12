@@ -48,29 +48,29 @@
     }
 
     window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1685076148397281',
-      cookie     : false,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.5' // use graph api version 2.5
-    });
+      FB.init({
+        appId: '1685076148397281',
+        cookie: false, // enable cookies to allow the server to access
+        // the session
+        xfbml: true, // parse social plugins on this page
+        version: 'v2.5' // use graph api version 2.5
+      });
 
-    // Now that we've initialized the JavaScript SDK, we call
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
+      // Now that we've initialized the JavaScript SDK, we call
+      // FB.getLoginStatus().  This function gets the state of the
+      // person visiting this page and can return one of three states to
+      // the callback you provide.  They can be:
+      //
+      // 1. Logged into your app ('connected')
+      // 2. Logged into Facebook, but not your app ('not_authorized')
+      // 3. Not logged into Facebook and can't tell if they are logged into
+      //    your app or not.
+      //
+      // These three cases are handled in the callback function.
 
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
 
     };
 
@@ -78,7 +78,8 @@
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
+      js = d.createElement(s);
+      js.id = id;
       js.src = "http://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
@@ -91,33 +92,23 @@
         console.log('Successful login for: ' + response.name);
         document.getElementById('welcome-user').innerHTML =
           'Welcome, ' + response.name + '!';
-          document.getElementById("demo01").click();
+          document.getElementById('user').innerHTML =
+             response.name;
       });
     }
   </script>
 
-  <!--
-    Below we include the Login Button social plugin. This button uses
-    the JavaScript SDK to present a graphical Login button that triggers
-    the FB.login() function when clicked.
-  -->
+
+  <div class="main-menu">
+    <h1 class="logo"><img src="img/logo.png"></h1>
+    <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+      </fb:login-button></h1>
+    <h1> Welcome, <span id="user">Guest</span><h1/>
 
 
 
-
-
-
-
-    <div class="main-menu">
-      <h1 class="logo"><img src="img/logo.png"></h1>
-      <!-- <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button></h1> -->
-    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false">
-      <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button></h1>
-    </div>
-      <a id="demo01" href="#animatedModal"></a>
-    </div>
+ <a id="demo01" href="#animatedModal"><button id="hint" >PLay</button></a>
+  </div>
 
   <div id="animatedModal">
     <div class="modal-content">
@@ -125,7 +116,7 @@
       <div class="container">
 
         <header>
-          <h1 id ="welcome-user"></h1>
+          <h1 id="welcome-user">Welcome, Guest!</h1>
           <h2>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h2>
         </header>
         <ul class="board">
@@ -179,8 +170,8 @@
 
 
 
-    <script src="js/sweetalert-dev.js"></script>
-    <script src="js/animatedModal.min.js"></script>
+  <script src="js/sweetalert-dev.js"></script>
+  <script src="js/animatedModal.min.js"></script>
   <script src="js/memorygame-refactored.js"></script>
 </body>
 
