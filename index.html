@@ -89,8 +89,8 @@
       console.log('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-          'Thanks for logging in, ' + response.name + '!';
+        document.getElementById('welcome-user').innerHTML =
+          'Welcome, ' + response.name + '!';
       });
     }
   </script>
@@ -104,8 +104,7 @@
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
   </fb:login-button>
 
-  <div id="status">
-  </div>
+
 
 
 
@@ -120,7 +119,7 @@
       <div class="container">
 
         <header>
-          <h1>Match Match Memory</h1>
+          <h1 id ="welcome-user"></h1>
           <h2>Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span></h2>
         </header>
         <ul class="board">
