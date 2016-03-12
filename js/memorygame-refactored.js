@@ -10,8 +10,8 @@ var MemoryGame = {
 
   reset: function() {
     this.fillAllSpots();
-    tries = 0;
-    matches = 0;
+    this.tries = 0;
+    this.matches = 0;
     this.previousClick = {};
     $("span.matches").text(matches);
     $("span.attempts").text(tries);
@@ -23,38 +23,33 @@ var MemoryGame = {
 
   // click spot event menthods below
 
-  savePlayerToFirebase: function(playerName) {
-    myFirebaseRef.push({
+  savePlayerToFirebase: function(playerName, firebase) {
+    firebase.push({
       'name': playerName,
-      'attempts': tries
+      'attempts': this.tries
     });
   },
 
 
-  win: function() {
-    var winMessage = " You won in " + tries + " attempts."
+  win: function(firebase) {
+    var winMessage = " You won in " + this.tries + " attempts."
     $('h2').text(winMessage);
-    //sweet alert
-    swal({
-      title: "You Won!",
-      text: "Enter Your Name:",
-      type: "input",
-      showCancelButton: true,
-      closeOnConfirm: false,
-      animation: "slide-from-top",
-      inputPlaceholder: "your name"
-    }, function(inputValue) {
-      if (inputValue === false) return false;
-      if (inputValue === "") {
-        swal.showInputError("You need to write something!");
-        return false
-      }
-      swal("Congratulations!", "Well Played", "success");
-      this.savePlayerToFirebase(inputValue);
-    })
+    var player = document.getElementById('user').innerHTML;
+    console.log(player);
+    if (player === 'Guesta') {
+      swal("You Won, Guest!")
+    } else {
+      swal({
+        title: "You won " + player,
+        text: "saving to leaderboard...",
+        timer: 2000,
+        showConfirmButton: false
+      });
+      this.savePlayerToFirebase(player, firebase);
+    }
   },
 
-  clickSpot: function(currentSpot) {
+  clickSpot: function(currentSpot, firebase) {
     var self = this;
     if ($(currentSpot).attr('class') === $(self.previousClick).attr('class')) {
       swal("Already Selected!");
@@ -69,8 +64,8 @@ var MemoryGame = {
       }
       self.previousClick = currentSpot;
 
-      if (self.matches === self.elements.length) {
-        self.win();
+      if (self.matches !== self.elements.length) {
+        self.win(firebase);
       }
       $("span.attempts").text(self.tries);
       $("span.matches").text(self.matches);
@@ -79,11 +74,11 @@ var MemoryGame = {
 
   //on page ready methods below
 
-  loadClickEvents: function() {
+  loadClickEvents: function(firebase) {
     self = this;
     $('.board li').on('click', function(event) {
       var currentSpot = this;
-      self.clickSpot(currentSpot);
+      self.clickSpot(currentSpot, firebase);
     });
 
     $('#reset').on('click', function(event) {
@@ -92,10 +87,25 @@ var MemoryGame = {
   },
 
   sortPlayersObjArr: function(arr) {
-    arr.sort(function(a, b) {
+      var arrSorted = arr.sort(function(a, b) {
+      return parseInt(a.attempts) - parseInt(b.attempts);
+      });
+      var arrAlphabetical =arrSorted.sort(function(a, b) {
+      if (a.name < b.name) return -1;
+      else if (a.name > b.name)return 1;
+      else return 0;
+    });
+    var arrUnique = [];
+    for (var i = 1; i < arrAlphabetical.length; i++) {
+      //console.log(arrAlphabetical[i].name);
+      if(arrAlphabetical[i].name  !== arrAlphabetical[i-1].name ){
+          arrUnique.push(arrAlphabetical[i]);
+      }
+    };
+    var arrUniqueSorted = arrUnique.sort(function(a, b) {
       return parseInt(a.attempts) - parseInt(b.attempts);
     });
-    return arr;
+    return arrUniqueSorted;
   },
 
   setTopPlayers: function(playersObjArr) {
@@ -103,8 +113,8 @@ var MemoryGame = {
     for (var i = 0; i < sortedPlayersObjArr.length; i++) {
       var attempt = sortedPlayersObjArr[i].attempts;
       var name = sortedPlayersObjArr[i].name;
-      name = name.slice(0,17);
-      $(".sidebar ol").append("<li>" + name + ": ("+ attempt+")</li>");
+      name = name.slice(0, 17);
+      $(".sidebar ol").append("<li>" + name + ": (" + attempt + ")</li>");
     }
   },
 
@@ -153,15 +163,15 @@ var MemoryGame = {
     this.getAllSpots();
     this.fillAllSpots();
     this.getPlayerScore(myFirebaseRef);
-    this.loadClickEvents();
+    this.loadClickEvents(myFirebaseRef);
   }
 };
 
 $(document).ready(function() {
   $("#demo01").animatedModal({
-    color:'#E7EBF2',
-    animatedIn:'bounceIn',
-    animatedOut:'bounceOutDown'
+    color: '#E7EBF2',
+    animatedIn: 'bounceIn',
+    animatedOut: 'bounceOutDown'
   });
   MemoryGame.init();
 });
