@@ -91,6 +91,7 @@
         console.log('Successful login for: ' + response.name);
         document.getElementById('welcome-user').innerHTML =
           'Welcome, ' + response.name + '!';
+          document.getElementById("demo01").click();
       });
     }
   </script>
@@ -101,8 +102,7 @@
     the FB.login() function when clicked.
   -->
 
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" href="#animatedModal">
-  </fb:login-button>
+
 
 
 
@@ -110,7 +110,9 @@
 
     <div class="main-menu">
       <h1 class="logo"><img src="img/logo.png"></h1>
-      <h1><a id="demo01" href="#animatedModal"><img src="img/facebook-login.png"></a></h1>
+      <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button></h1>
+      <a id="demo01" href="#animatedModal"></a>
     </div>
 
   <div id="animatedModal">
