@@ -1,5 +1,5 @@
 body {
-  background-color: #B4E0E1;
+  background-color: #E7EBF2;
   color: #224687;
   font-family: "Areal", sans-serif;
 }
@@ -96,25 +96,8 @@ footer {
 
 /*main menu code ( may not be implemented in the final game)*/
 
-#f-login {
-  border: 0;
-  background: #2ABFD4;
-  color: #ffffff;
-  width: 45%;
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 5px;
-  display: inline-block;
-}
-#g-login {
-  border: 0;
-  background: #2ABFD4;
-  color: #ffffff;
-  width: 45%;
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 5px;
-  display: inline-block;
+.logo{
+  margin-top: 100px;
 }
 .main-menu {
   margin-top: 200px;

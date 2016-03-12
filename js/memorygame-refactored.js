@@ -9,7 +9,7 @@ var MemoryGame = {
   // reset click method below
 
   reset: function() {
-    this.fillAllBoxes();
+    this.fillAllSpots();
     tries = 0;
     matches = 0;
     this.previousClick = {};
@@ -158,5 +158,10 @@ var MemoryGame = {
 };
 
 $(document).ready(function() {
+  $("#demo01").animatedModal({
+    color:'#E7EBF2',
+    animatedIn:'bounceIn',
+    animatedOut:'bounceOutDown'
+  });
   MemoryGame.init();
 });
