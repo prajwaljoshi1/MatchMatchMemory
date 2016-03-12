@@ -50,7 +50,7 @@
     window.fbAsyncInit = function() {
     FB.init({
       appId      : '1685076148397281',
-      cookie     : true,  // enable cookies to allow the server to access
+      cookie     : false,  // enable cookies to allow the server to access
                           // the session
       xfbml      : true,  // parse social plugins on this page
       version    : 'v2.5' // use graph api version 2.5
@@ -110,9 +110,12 @@
 
     <div class="main-menu">
       <h1 class="logo"><img src="img/logo.png"></h1>
+      <!-- <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button></h1> -->
+    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false">
       <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button></h1>
-    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+    </div>
       <a id="demo01" href="#animatedModal"></a>
     </div>
 
