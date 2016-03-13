@@ -36,7 +36,7 @@ var MemoryGame = {
     $('h2').text(winMessage);
     var player = document.getElementById('user').innerHTML;
     console.log(player);
-    if (player === 'Guesta') {
+    if (player === 'Guest') {
       swal("You Won, Guest!")
     } else {
       swal({
@@ -98,22 +98,22 @@ var MemoryGame = {
       var arrSorted = arr.sort(function(a, b) {
       return parseInt(a.attempts) - parseInt(b.attempts);
       });
-      var arrAlphabetical =arrSorted.sort(function(a, b) {
-      if (a.name < b.name) return -1;
-      else if (a.name > b.name)return 1;
-      else return 0;
-    });
-    var arrUnique = [];
-    for (var i = 1; i < arrAlphabetical.length; i++) {
+      //var arrAlphabetical =arrSorted.sort(function(a, b) {
+      //if (a.name < b.name) return -1;
+      //else if (a.name > b.name)return 1;
+      //else return 0;
+    //});
+    //var arrUnique = [];
+    //for (var i = 1; i < arrAlphabetical.length; i++) {
       //console.log(arrAlphabetical[i].name);
-      if(arrAlphabetical[i].name  !== arrAlphabetical[i-1].name ){
-          arrUnique.push(arrAlphabetical[i]);
-      }
-    };
-    var arrUniqueSorted = arrUnique.sort(function(a, b) {
-      return parseInt(a.attempts) - parseInt(b.attempts);
-    });
-    return arrUniqueSorted;
+      //if(arrAlphabetical[i].name  !== arrAlphabetical[i-1].name ){
+        //  arrUnique.push(arrAlphabetical[i]);
+      //}
+    //};
+    //var arrUniqueSorted = arrUnique.sort(function(a, b) {
+      //return parseInt(a.attempts) - parseInt(b.attempts);
+    //});
+    return arrSorted;
   },
 
   setTopPlayers: function(playersObjArr) {
