@@ -88,8 +88,8 @@ var MemoryGame = {
       self.reset();
     });
 
-    $('#demo01').on('click', function(event) {
-      var startsound = $("audio")[4];
+    $('#play').on('click', function(event) {
+      startsound = $("audio")[4];
       startsound.play();
     });
   },
@@ -182,8 +182,23 @@ var MemoryGame = {
 },
 
 gameSound:function(){
+
+   console.log("here");
     var gamesound = $("audio")[3];
     gamesound.play();
+
+    $('#music').on('click', function(event) {
+      if($.trim($(this).text()) === 'Pause Music'){
+         console.log("pause");
+        gamesound.pause();
+        $(this).text('Play Music');
+      }else{
+        gamesound.play();
+        console.log("play");
+        $(this).text('Pause Music');
+      }
+
+    });
 },
 
   init: function() {
@@ -197,7 +212,7 @@ gameSound:function(){
 };
 
 $(document).ready(function() {
-  $("#demo01").animatedModal({
+  $("#play").animatedModal({
     color: '#E7EBF2',
     animatedIn: 'bounceIn',
     animatedOut: 'bounceOutDown'
