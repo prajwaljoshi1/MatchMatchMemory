@@ -13,10 +13,10 @@ var MemoryGame = {
     this.tries = 0;
     this.matches = 0;
     this.previousClick = {};
-    $("span.matches").text(matches);
-    $("span.attempts").text(tries);
-    for (var i = 0; i < $spot.length; i++) {
-      $spot[i].removeClass('matched');
+    $("span.matches").text(this.matches);
+    $("span.attempts").text(this.tries);
+    for (var i = 0; i < this.$spot.length; i++) {
+      this.$spot[i].removeClass('matched');
     }
     $('h2').html('Attempts: <span class="attempts">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matches: <span class="matches">0</span>');
   },
@@ -58,13 +58,15 @@ var MemoryGame = {
       //console.log($(self.previousClick).text());
       //console.log($(currentSpot).text());
       if ($(self.previousClick).text() === $(currentSpot).text()) {
+
         $(currentSpot).addClass('matched');
         $(self.previousClick).addClass('matched');
         self.matches++;
+        this.cheeringSound();
       }
       self.previousClick = currentSpot;
 
-      if (self.matches !== self.elements.length) {
+      if (self.matches === self.elements.length) {
         self.win(firebase);
       }
       $("span.attempts").text(self.tries);
@@ -79,10 +81,16 @@ var MemoryGame = {
     $('.board li').on('click', function(event) {
       var currentSpot = this;
       self.clickSpot(currentSpot, firebase);
+      self.clickSound();
     });
 
     $('#reset').on('click', function(event) {
       self.reset();
+    });
+
+    $('#demo01').on('click', function(event) {
+      var startsound = $("audio")[4];
+      startsound.play();
     });
   },
 
@@ -158,8 +166,29 @@ var MemoryGame = {
     }
   },
 
+  clickSound:function(){
+    var click = $("audio")[2];
+    click.play();
+  },
+
+  cheeringSound: function(){
+
+    if(this.matches === this.elements.length){
+       var cheer = $("audio")[1];
+    }else{
+       var cheer = $("audio")[0];
+    }
+     cheer.play();
+},
+
+gameSound:function(){
+    var gamesound = $("audio")[3];
+    gamesound.play();
+},
+
   init: function() {
     var myFirebaseRef = new Firebase("https://ultimatememorygame.firebaseio.com/");
+    this.gameSound();
     this.getAllSpots();
     this.fillAllSpots();
     this.getPlayerScore(myFirebaseRef);
