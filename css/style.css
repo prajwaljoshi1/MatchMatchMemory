@@ -99,11 +99,15 @@ footer {
 .logo{
   margin-top: 100px;
 }
-.main-menu {
-  margin-top: 200px;
+.title{
+  margin-top: 80px;
+  font-size: 4em;
 }
 
-#facebook-login{
-  height: 200%;
-  width: 200%;
+.main-menu{
+background-color: #224687;
+ width: 600px;
+ margin:140px auto;
+ height:400px;
+ border-radius: 5px;
 }
