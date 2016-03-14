@@ -1,7 +1,5 @@
 # Match Match Memory
 
-### by Prajwal
-
 ======================================================================================================================
 
 jQuery example app that implements the famous memory game of finding matching pairs of letters. A good brain exercise.
