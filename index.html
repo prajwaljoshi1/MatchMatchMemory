@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="css/sweetalert.css">
   <link rel="stylesheet" href="css/animate.min.css">
   <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+  <script src="js/jquery-1.12.1.js"></script>
+  <script src="js/facebooklogin.js"></script>
 </head>
 
 <body>
-  <script src="js/jquery-1.12.1.js"></script>
-  <script src="js/facebooklogin.js"></script>
+
 
 
   <div class="main-menu">
     <h1 class="title">Match Match Memory</h1>
-    <!-- <h1 class="logo"><img src="img/logo.png"></h1> -->
     <h1><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
       </fb:login-button></h1>
     <h1> Welcome, <span id="user">Guest</span><h1/>
@@ -72,7 +72,7 @@
   </div>
 
   <div class="sidebar">
-    <h1>leaderboard</h1>
+    <h1>Leaderboard</h1>
     <ol class="score">
     </ol>
   </div>
